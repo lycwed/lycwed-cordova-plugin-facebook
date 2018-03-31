@@ -1,0 +1,29 @@
+{
+  "name": "lycwed-cordova-plugin-facebook",
+  "version": "1.0.0",
+  "description": "Cordova support for Facebook Connect",
+  "cordova": {
+    "id": "lycwed-cordova-plugin-facebook",
+    "platforms": [
+      "android",
+      "ios",
+      "browser"
+    ]
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/lycwed/lycwed-cordova-plugin-facebook"
+  },
+  "keywords": [
+    "cordova",
+    "facebook",
+    "ecosystem:cordova",
+    "cordova-android",
+    "cordova-ios",
+    "cordova-browser",
+    "facebook-sdk",
+    "social",
+    "sharing"
+  ],
+  "license": "Apache-2.0"
+}
