@@ -4,17 +4,21 @@
 
 ## Installation
 
-See npm package for versions - https://www.npmjs.com/package/cordova-plugin-facebook4
+This version fix the cordova@7.0.0 problem.
+
+See npm package for versions - https://www.npmjs.com/package/lycwed-cordova-plugin-facebook
 
 Make sure you've registered your Facebook app with Facebook and have an `APP_ID` [https://developers.facebook.com/apps](https://developers.facebook.com/apps).
 
 ```bash
-$ cordova plugin add cordova-plugin-facebook4 --save --variable APP_ID="123456789" --variable APP_NAME="myApplication"
+$ cordova plugin add lycwed-cordova-plugin-facebook --save --variable APP_ID="123456789" --variable APP_NAME="myApplication"
 ```
 
 If you need to change your `APP_ID` after installation, it's recommended that you remove and then re-add the plugin as above. Note that changes to the `APP_ID` value in your `config.xml` file will *not* be propagated to the individual platform builds.
 
 ## Usage
+
+Based on npm package for versions - https://www.npmjs.com/package/cordova-plugin-facebook4.
 
 This is a fork of the [official plugin for Facebook](https://github.com/Wizcorp/phonegap-facebook-plugin/) in Apache Cordova that implements the latest Facebook SDK. Unless noted, this is a drop-in replacement. You don't have to replace your client code.
 
@@ -23,7 +27,7 @@ The Facebook plugin for [Apache Cordova](http://cordova.apache.org/) allows you 
 ## Compatibility
 
   * Cordova >= 5.0.0
-  * cordova-android >= 4.0
+  * cordova-android >= 4.0 (see Android Guide for cordova-android >= 7)
   * cordova-ios >= 3.8
   * cordova-browser >= 3.6
   * Phonegap build (use phonegap-version >= cli-5.2.0, android-minSdkVersion>=15, and android-build-tool=gradle), see [example here](https://github.com/yoav-zibin/phonegap-tictactoe/blob/gh-pages/www/config.xml)
@@ -109,7 +113,11 @@ Share Dialog:
 		share_feedWeb: true, // iOS only
 	}
 
-For iOS, the default dialog mode is [`FBSDKShareDialogModeAutomatic`](https://developers.facebook.com/docs/reference/ios/current/constants/FBSDKShareDialogMode/). You can share that by adding a specific dialog mode parameter. The available share dialog modes are: `share_sheet`, `share_feedBrowser`, `share_native` and `share_feedWeb`. [Read more about share dialog modes](https://developers.facebook.com/docs/reference/ios/current/constants/FBSDKShareDialogMode/)
+#### iOS
+
+The default dialog mode is [`FBSDKShareDialogModeAutomatic`](https://developers.facebook.com/docs/reference/ios/current/constants/FBSDKShareDialogMode/). You can share that by adding a specific dialog mode parameter. The available share dialog modes are: `share_sheet`, `share_feedBrowser`, `share_native` and `share_feedWeb`. [Read more about share dialog modes](https://developers.facebook.com/docs/reference/ios/current/constants/FBSDKShareDialogMode/)
+
+`caption`, `description` and `picture` were deprecated in Facebok API [v2.9](https://developers.facebook.com/docs/graph-api/changelog/version2.9#gapi-deprecate) and therefore not supported anymore on iOS
 
 Game request:
 
@@ -154,7 +162,7 @@ Share dialog - Open Graph Story: (currently only fully available on Android, iOS
     	};
 	}
 	
-In case you want to use custom actions/objects, just prepend the app namespace to the name (E.g: ` obj['og:type'] = 'appnamespace:objectname' `, `action: 'appnamespace:actionname'`. The namespace of a Facebook app is found on the Settings page. 
+In case you want to use custom actions/objects, just prepend the app namespace to the name (E.g: ` obj['og:type'] = 'appnamespace:objectname' `, `action: 'appnamespace:actionname'`. The namespace of a Facebook app is found on the Settings page.
 
 
 For options information see: [Facebook share dialog documentation](https://developers.facebook.com/docs/sharing/reference/share-dialog) [Facebook send dialog documentation](https://developers.facebook.com/docs/sharing/reference/send-dialog)
@@ -214,45 +222,6 @@ Events are listed on the [insights page](https://www.facebook.com/insights/)
 ### Manually log activation events
 
 `activateApp(Function success, Function failure)`
-
-### App Invites
-
-`facebookConnectPlugin.appInvite(Object options, Function success, Function failure)`
-
-Please check out the [App Invites Overview](https://developers.facebook.com/docs/app-invites/overview) before using this. The URL is expected to be an [App Link](https://developers.facebook.com/docs/applinks).
-
-Example options:
-
-    {
-      url: "http://example.com",
-      picture: "http://example.com/image.png"
-    }
-
-## Sample Code
-
-```js
-facebookConnectPlugin.appInvite(
-    {
-        url: "http://example.com",
-        picture: "http://example.com/image.png"
-    },
-    function(obj){
-        if(obj) {
-            if(obj.completionGesture == "cancel") {
-                // user canceled, bad guy
-            } else {
-                // user really invited someone :)
-            }
-        } else {
-            // user just pressed done, bad guy
-        }
-    },
-    function(obj){
-        // error
-        console.log(obj);
-    }
-);
-```
 
 ### Login
 
@@ -345,4 +314,3 @@ facebookConnectPlugin.showDialog({
   }
 );
 ```
-# lycwed-cordova-plugin-facebook
